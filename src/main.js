@@ -25,3 +25,17 @@ function addTask(value) {
   data.push(value);
   localStorage.setItem(KEY, JSON.stringify(data));
 }
+
+function saveData() {
+  const saveToLs = JSON.parse(localStorage.getItem(KEY));
+  if (!saveToLs) return;
+
+  const createMarkup = saveToLs
+    .map(value => {
+      return `<li>${value}</li>`;
+    })
+    .join('');
+
+  list.insertAdjacentHTML('beforeend', createMarkup);
+}
+saveData();
